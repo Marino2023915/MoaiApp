@@ -1,0 +1,73 @@
+<!--
+**
+* Copyright nus Academy Co., Ltd. 2008, 2020. All rights reserved.
+*
+* This software is the proprietary information of nus Academy Co., Ltd.
+* Use is subject to license terms.
+**
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ログイン画面【MoaiApp】</title>
+<link href="../css/common.css" rel="stylesheet">
+</head>
+<body>
+<!-- ヘッダ -->
+  <header>
+    <div class="contents-wrap-title">
+      <div class="site-title">
+        <h1>MoaiApp</h1>
+        <span class="site-subtitle"></span>
+      </div>
+      模合管理システムです
+
+    </div>
+    <hr class="hr-header">
+  </header>
+<!-- メインコンテンツ" -->
+  <main>
+<!-- ログインフォーム -->
+    <div class="contents-wrap-login">
+      <form name="form1" method ="post" action ="/MoaiApp/system/LoginServlet">
+        <div class="login-heading">
+          登録済みの方
+        </div>
+<!-- 顧客番号 -->
+        <div class="login-content">
+          <div class="login-content-item">ID:</div>
+          <input type="text" name="no" size="20">
+        </div>
+<!-- パスワード -->
+        <div class="login-content">
+          <div class="login-content-item">パスワード:</div>
+          <input type="password" name="password" size="20">
+        </div>
+<!-- 送信ボタン -->
+        <div class="contents-wrap-button">
+          <input type="submit" name="submit" value="ログイン">
+        </div>
+      </form>
+    </div>
+<!-- 新規顧客登録 -->
+    <div class="contents-wrap-login">
+      <div class="login-heading">
+        初めてご利用の方
+      </div>
+      ご利用には、登録が必要となります。<br>
+<!-- 新規登録ページへのリンク -->
+      <a href="../customer/customer_regist.html">>> 新規登録はこちら</a>
+    </div>
+  </main>
+<!-- フッタ -->
+  <footer>
+    <hr>
+    <p>
+      お問い合わせ：仲宗根<br>
+      <a href="mailto: ">Mail:marino.nakasone@gmail.com</a>
+    </p>
+    <p>marino.nakasone 2023, 1205.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,382 @@
+@charset "UTF-8";
+
+/* エリア */
+body {
+    background-color: #FFFFFF;
+}
+
+main {
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding-top: 25px;
+}
+
+/* 見出し */
+h1 {
+    font-size: x-large;
+    line-height: 0;
+}
+
+h2 {
+    font-size: medium;
+    font-weight: normal;
+    line-height: 0;
+}
+
+/* メッセージ部分 */
+div.message {
+    padding: 36px 0px;
+}
+
+div.message-order-accept {
+    font-size: large;
+    padding: 18px 0px;
+}
+
+div.message-required {
+    width: 60%;
+    color: red;
+    text-align: left;
+    margin: -36px auto 0;
+    padding: 3px 0px;
+}
+
+div.order-button {
+    width: 69%;
+    text-align: right;
+    margin: 5px auto 0;
+}
+
+div.order-button .order-button-note {
+    font-size: x-small;
+}
+
+/* エラー、必須、顧客名、注文番号、合計金額 */
+.error, .required, .custmer-name, .orderno, .totalAmount {
+    color: red;
+}
+
+/* ボタン */
+.contents-wrap-button {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+}
+
+.contents-wrap-button input {
+    margin: 0 10px;
+}
+
+/* タイトル部分 */
+.contents-wrap-title {
+    font-family: 'HG丸ゴシックM-PRO', sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.contents-wrap-title div.site-title {
+    width: 26%;
+    color: #FF9900;
+}
+
+.contents-wrap-title span.site-subtitle {
+    font-size: x-small;
+}
+
+.contents-wrap-title div.logout {
+    width: 21%;
+    margin-left: auto;
+}
+
+/* ログイン画面 */
+.contents-wrap-login {
+    width: 380px;
+    text-align: left;
+    border: solid 2px #FFCC66;
+    margin: 36px auto 0;
+    padding: 5px 5px 25px 5px;
+}
+
+.contents-wrap-login div.login-heading {
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+.contents-wrap-login div.login-content {
+    display: flex;
+    padding-bottom: 5px;
+}
+
+.contents-wrap-login div.login-content-item {
+    width: 130px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+/* メニューテーブルの区切り */
+hr.hr-header {
+    background-color: #FFCC66;
+    height: 10px;
+    border: none;
+    margin-top: 0px;
+    margin-bottom: 2px;
+}
+
+/* メニューテーブル */
+table.table-menu {
+    width: 100%;
+}
+
+.table-menu tr {
+    background-color: #FFCC66;
+    height: 15px;
+}
+
+.table-menu th {
+    width: 25%;
+    text-align: center;
+}
+
+.table-menu .menu-selected {
+    background-color: #CC3333;
+    color: #FFFFFF;
+}
+
+.table-menu .menu-selected a {
+    color: #FFFFFF;
+}
+
+/* 商品テーブル */
+table.table-product {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.table-product tr.tr-product-header {
+    background-color: #FFCC66;
+    text-align: center;
+}
+
+.table-product tr.tr-product-detail {
+    background-color: #FFFFCC;
+}
+
+.table-product th {
+    height: 17px;
+}
+
+.table-product th:nth-child(1) {
+    width: 44%;
+}
+
+.table-product th:nth-child(2) {
+    width: 14%;
+}
+
+.table-product th:nth-child(3) {
+    width: 11%;
+}
+
+.table-product th:nth-child(4) {
+    width: 16%;
+}
+
+.table-product th:nth-child(5) {
+    width: 15%;
+}
+
+.table-product td {
+    height: 35px;
+}
+
+.table-product td:nth-child(1) {
+    text-align: left;
+}
+
+.table-product td:nth-child(2), td:nth-child(3), td:nth-child(4) {
+    text-align: right;
+}
+
+.table-product td:nth-child(5) {
+    text-align: center;
+    padding: 5px 0px;
+}
+
+/* 商品情報テーブル */
+table.table-product-info {
+    width: 75%;
+    height: 56px;
+    margin: 0 auto;
+}
+
+.table-product-info tr.tr-product-info-header {
+    background-color: #FFCC66;
+    text-align: center;
+}
+
+.table-product-info tr.tr-product-info-detail {
+    background-color: #FFFFCC;
+}
+
+.table-product-info td.td-goods-cd {
+    text-align: center;
+}
+
+.table-product-info th {
+    height: 22px;
+}
+
+.table-product-info th:nth-child(1) {
+    width: 10%;
+}
+
+.table-product-info th:nth-child(3) {
+    width: 30%;
+}
+
+.table-product-info th:nth-child(2), th:nth-child(4) {
+    width: 20%;
+}
+
+.table-product-info td {
+    text-align: left;
+}
+
+.table-product-info td:nth-child(1) {
+    text-align: center;
+}
+
+.table-product-info td:nth-child(4) {
+    text-align: right;
+}
+
+/* 商品説明テーブル */
+table.table-product-description {
+    width: 75%;
+    height: 56px;
+    margin: 0 auto 20px;
+}
+
+.table-product-description th {
+    background-color: #FFCC66;
+    width: 15%;
+    text-align: left;
+}
+
+.table-product-description td {
+    background-color: #FFFFCC;
+}
+
+.table-product-description tr:nth-child(1) th:nth-child(1) {
+    height: 22px;
+}
+
+.table-product-description tr:nth-child(2) th:nth-child(1), tr:nth-child(3) th:nth-child(1)
+    {
+    height: 35px;
+}
+
+.table-product-description td:nth-child(2) {
+    width: 50%;
+    text-align: left;
+}
+
+.table-product-description td:nth-child(3) {
+    width: 10%;
+    text-align: center;
+}
+
+/* 支払いテーブル */
+table.table-payment {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.table-payment th {
+    background-color: #FFCC66;
+    width: 44%;
+    text-align: right;
+    padding-right: 15px;
+}
+
+.table-payment td {
+    text-align: right;
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+/* 検索テーブル */
+table.table-search {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.table-search th {
+    background-color: #FFCC66;
+    width: 200px;
+    text-align: left;
+    padding-left: 5px;
+}
+
+.table-search tr {
+    height: 40px;
+}
+
+.table-search td {
+    background-color: #FFFFCC;
+    text-align: left;
+    padding-left: 5px;
+}
+
+/* 顧客登録テーブル */
+table.table-customer-register {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.table-customer-register tr {
+    height: 40px;
+}
+
+.table-customer-register th {
+    background-color: #FFCC66;
+    width: 250px;
+    text-align: left;
+    padding-left: 5px;
+}
+
+.table-customer-register td {
+    background-color: #FFFFCC;
+    width: auto;
+    text-align: left;
+    padding-left: 5px;
+}
+
+.table-customer-register .form-comment {
+    font-size: small;
+}
+
+/* 顧客番号テーブル */
+table.table-customer-number {
+    width: 60%;
+    text-align: left;
+    border-spacing: 0px;
+    border-top: solid #FFCC66 3px;
+    border-bottom: solid #FFCC66 3px;
+    margin: 20px auto 0;
+}
+
+.table-customer-number td {
+    font-size: large;
+}
+
+.table-customer-number td:nth-child(1) {
+    width: 20%;
+}
+
+.table-customer-number td:nth-child(2) {
+    width: 80%;
+}

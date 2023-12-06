@@ -1,0 +1,109 @@
+﻿<!--
+**
+* Copyright nus Academy Co., Ltd. 2008, 2020. All rights reserved.
+*
+* This software is the proprietary information of nus Academy Co., Ltd.
+* Use is subject to license terms.
+**
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>新規登録【MoaiApp】</title>
+<link href="../css/common.css" rel="stylesheet">
+</head>
+<body>
+<!-- ヘッダ -->
+  <header>
+    <div class="contents-wrap-title">
+      <div class="site-title">
+        <h1>MoaiApp</h1>
+        <span class="site-subtitle"></span>
+      </div>
+      <h2>新規登録</h2>
+    </div>
+    <hr class="hr-header">
+  </header>
+<!-- メインコンテンツ -->
+  <main>
+    <div class="message">
+      お客様の情報を入力して、「登録」ボタンを押してください。
+    </div>
+    <div class="message-required">
+      * 入力必須
+    </div>
+    <form name="form1" method="post" action="/MoaiApp/customer/CustomerRegistServlet">
+      <table class="table-customer-register">
+<!-- 氏名 -->
+        <tr>
+          <th>氏名 <span class="required">*</span></th>
+          <td>
+            姓<input name="nameLast" type="text">
+            名<input name="nameFirst" type="text">
+          </td>
+        </tr>
+<!-- パスワード -->
+        <tr>
+          <th>パスワード(4〜10文字) <span class="required">*</span></th>
+          <td>
+            <input name="password1" type="password">
+          </td>
+        </tr>
+<!-- パスワード（確認) -->
+        <tr>
+          <th>パスワード(確認) <span class="required">*</span></th>
+          <td>
+            <input name="password2" type="password"><br>
+            <span class="form-comment">*上記パスワードと同じものを入力してください。</span>
+          </td>
+        </tr>
+<!-- 郵便番号 -->
+        <tr>
+          <th>郵便番号 <span class="required">*</span></th>
+          <td>
+            <input name="postalNo1" type="text" size="4">
+            -
+            <input name="postalNo2" type="text" size="5">
+          </td>
+        </tr>
+<!-- 住所 -->
+        <tr>
+          <th>住所 <span class="required">*</span></th>
+          <td>
+            <input name="address" type="text" size="50">
+          </td>
+        </tr>
+<!-- 電話番号 -->
+        <tr>
+          <th>電話番号(ハイフンなし) <span class="required">*</span></th>
+          <td>
+            <input name="phone" type="text">
+          </td>
+        </tr>
+<!-- e-Mail -->
+        <tr>
+          <th>e-Mail</th>
+          <td>
+            <input name="email" type="text">
+          </td>
+        </tr>
+      </table>
+      <div class="contents-wrap-button">
+        <input type="submit" name="submit" value="登録">
+        <input type="reset" name="reset" value="リセット">
+      </div>
+    </form>
+  </main>
+<!-- フッタ -->
+  <!-- フッタ -->
+  <footer>
+    <hr>
+    <p>
+      お問い合わせ：仲宗根<br>
+      <a href="mailto: ">Mail:marino.nakasone@gmail.com</a>
+    </p>
+    <p>marino.nakasone 2023, 1205.</p>
+  </footer>
+</body>
+</html>
