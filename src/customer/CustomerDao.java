@@ -35,7 +35,7 @@ public class CustomerDao {
      * 機能１
      * <br>
      */
-    private static final String URL = "jdbc:postgresql://localhost:5432/moaiApp";
+    private static final String URL = "jdbc:postgresql://localhost:5432/PostgreSQL 16";
 
     /**
      * 接続情報 ユーザ名
