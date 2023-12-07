@@ -23,7 +23,7 @@ import customer.CustomerDao;
  * 顧客のログイン認証を行うServletです。
  * @author nus Academy Co., Ltd
  */
-@WebServlet({ "/system/LoginServlet" })
+@WebServlet({ "/MoaiApp/src/system/LoginServlet.java" })
 public class LoginServlet extends HttpServlet {
     /**
      * HttpServlet#doPost()のオーバーライドです。

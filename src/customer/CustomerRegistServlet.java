@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * 顧客情報を登録するServletです。
  * @author nus Academy Co., Ltd
  */
-@WebServlet({ "/customer/CustomerRegistServlet" })
+@WebServlet({ "/MoaiApp/src/customer/CustomerRegistServlet.java" })
 public class CustomerRegistServlet extends HttpServlet {
     /**
      * HttpServlet#doPost()のオーバーライドです。
@@ -148,7 +148,7 @@ public class CustomerRegistServlet extends HttpServlet {
                 // 採番された顧客番号はリクエストに保存
                 req.setAttribute("no", no);
                 // 遷移先を指定
-                next = "/customer/customer_accept.jsp";
+                next = "/MoaiApp/WebContent/customer/customer_accept.jsp";
             } catch (ClassNotFoundException e) {
                 // 遷移先を指定しエラーメッセージを詰める
                 next = "/system/error.jsp";
