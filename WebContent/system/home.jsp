@@ -17,7 +17,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ホーム【さくらマーケット】</title>
+<title>ホーム【MoaiApp】</title>
 <link href="../css/common.css" rel="stylesheet">
 </head>
 <body>
@@ -26,7 +26,7 @@
     <div class="contents-wrap-title">
       <div class="site-title">
         <h1>さくらマーケット</h1>
-        <span class="site-subtitle">〜インターネットショッピングサイト〜</span>
+        <span class="site-subtitle">MoaiApp</span>
       </div>
       <h2>ホーム</h2>
       <div class="logout"><a href="/SAKURA_ans/system/LogoutServlet">ログアウト</a></div>
@@ -51,26 +51,28 @@
   <!-- メインコンテンツ -->
   <main>
     <div class="message">
-      いらっしゃいませ，
+      日々の業務お疲れ様です，
       <span class="custmer-name">
         <jsp:getProperty name="cust" property="nameLast" />
         <jsp:getProperty name="cust" property="nameFirst" />
       </span>
-      様。
+      さん。
       <p>
-        商品一覧を選ぶと，商品の一覧が表示されます。<br>
-        ご希望の商品を買い物かごに入れて，ご注文ください。
+        新しい模合を登録するか、すでにある模合を選択してください
       </p>
     </div>
+
+     <a href="new_registration.jsp">新しい模合を登録</a>
+
   </main>
-  <!-- フッタ -->
+ <!-- フッタ -->
   <footer>
     <hr>
     <p>
-      お問い合わせ：さくらマーケットお客様センター<br>
-      <a href="mailto: ">Mail:xxx@nus.com</a> Tel:03-XXXX-XXXX
+      お問い合わせ：仲宗根<br>
+      <a href="mailto: ">Mail:marino.nakasone@gmail.com</a>
     </p>
-    <p>Copyright nus Academy Co., Ltd. 2008, 2020. All rights reserved.</p>
+    <p>marino.nakasone 2023, 1205.</p>
   </footer>
 </body>
 </html>
