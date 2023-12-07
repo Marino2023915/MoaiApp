@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * 顧客情報を登録するServletです。
  * @author nus Academy Co., Ltd
  */
-@WebServlet({ "/MoaiApp/src/customer/CustomerRegistServlet.java" })
+@WebServlet({ "/customer/CustomerRegistServlet" })
 public class CustomerRegistServlet extends HttpServlet {
     /**
      * HttpServlet#doPost()のオーバーライドです。
@@ -56,9 +56,6 @@ public class CustomerRegistServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
-
-
-
         // 使用するDAO
         CustomerDao dao = null;
         // 遷移先のパス
@@ -136,9 +133,6 @@ public class CustomerRegistServlet extends HttpServlet {
                 cust.setAddress(address);
                 cust.setPhone(phone);
                 cust.setEmail(email);
-
-
-
                 // CustomerDao生成
                 dao = new CustomerDao();
                 // データベースに接続
@@ -148,7 +142,7 @@ public class CustomerRegistServlet extends HttpServlet {
                 // 採番された顧客番号はリクエストに保存
                 req.setAttribute("no", no);
                 // 遷移先を指定
-                next = "/MoaiApp/WebContent/customer/customer_accept.jsp";
+                next = "/customer/customer_accept.jsp";
             } catch (ClassNotFoundException e) {
                 // 遷移先を指定しエラーメッセージを詰める
                 next = "/system/error.jsp";
