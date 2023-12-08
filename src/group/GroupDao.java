@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 // GroupDao.java
 public class GroupDao {
@@ -110,7 +112,9 @@ public class GroupDao {
         }
     }
 
-
+    /**
+     * Group作成
+     */
     public int createGroup(String groupName, String description, String ownerNo) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -176,6 +180,53 @@ public class GroupDao {
             }
             // コネクションのオートコミットを元に戻すなどの後処理
         }
+    }
+    /**
+     *ユーザーIDを引数として受け取り、そのユーザーが所属するグループの一覧を返すメソッドを作成します。
+     */
+    public List<Integer> getGroupIdsByUserId(String userId) throws SQLException {
+        List<Integer> groupIds = new ArrayList<>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT group_id FROM GroupParticipants WHERE user_id = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, userId);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                groupIds.add(rs.getInt("group_id"));
+            }
+        } finally {
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+        }
+        return groupIds;
+    }
+
+
+    public Group getGroupDetailsById(int groupId) throws SQLException {
+        Group group = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT * FROM Groups WHERE group_id = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, groupId);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                group = new Group();
+                group.setGroup_No(rs.getInt("group_id"));
+                group.setGroup_Name(rs.getString("group_name"));
+                group.setDescription(rs.getString("description"));
+                group.setOwner_Id(rs.getString("owner_id"));
+                group.setCreation_Date(rs.getDate("creation_date"));
+                // 他の必要なフィールドも同様にセット
+            }
+        } finally {
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+        }
+        return group;
     }
 
 

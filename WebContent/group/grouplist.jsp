@@ -9,9 +9,13 @@
 <%--encoding--%>
 <%@ page pageEncoding="UTF-8"
   contentType="text/html;charset=UTF-8" %>
-<%@ page import="customer.Customer" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="group.Group" %> <!-- Groupクラスのインポート -->
+
+
 <%--useBean--%>
-<jsp:useBean id="cust" scope="session" type="customer.Customer" />
+
 
 <!DOCTYPE html>
 <html>
@@ -40,7 +44,7 @@
           <a href="/MoaiApp/group/group_creation.html">新規グループ作成</a>
         </th>
         <th>
-          <a href="/MoaiApp/group/GroupListServlet">加入グループ表示</a>
+          <a href="/SAKURA_ans/goods/goods_search.html">商品検索</a>
         </th>
         <th>
           <a href="/SAKURA_ans/order/ViewCartServlet">買い物かご</a>
@@ -48,24 +52,40 @@
       </tr>
     </table>
   </header>
-  <!-- メインコンテンツ -->
+<!-- メインコンテンツ -->
   <main>
     <div class="message">
-      日々の業務お疲れ様です，
-      <span class="custmer-name">
-        <jsp:getProperty name="cust" property="nameLast" />
-        <jsp:getProperty name="cust" property="nameFirst" />
-      </span>
-      さん。
-      <p>
-        新しい模合を登録するか、すでにある模合を選択してください
-      </p>
+      商品の情報を参照する場合は，各商品左のボタンを押してください。
     </div>
-
-     <a href="new_registration.jsp">新しい模合を登録</a>
-
+    <table class="table-product-info">
+      <tr class="tr-product-info-header">
+        <th>模合グループ名</th>
+        <th>グループの説明</th>
+        <th>グループ作成者</th>
+        <th>模合グループメンバー</th>
+        <th>グループ作成日</th>
+      </tr>
+<%
+List<Group> groups = (List<Group>) request.getAttribute("groups");
+for(Group group : groups) {
+%>
+<tr>
+    <td><%= group.getGroupName() %></td>
+    <td><%= group.getDescription() %></td>
+    <td><%= group.getOwnerId() %></td>
+    <td>
+        <% for(String memberName : group.getMemberNames()) { %>
+            <%= memberName %><br>
+        <% } %>
+    </td>
+    <td><%= group.getCreationDate() %></td>
+</tr>
+<%
+}
+%>
+    </table>
   </main>
- <!-- フッタ -->
+<!-- フッタ -->
   <footer>
     <hr>
     <p>

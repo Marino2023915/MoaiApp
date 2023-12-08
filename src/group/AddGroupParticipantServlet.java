@@ -44,16 +44,22 @@ public class AddGroupParticipantServlet extends HttpServlet {
 	            dao.addParticipant(groupId, customerNo);
 	            // 成功した場合の処理（リダイレクトや成功メッセージの表示など）
 	            System.out.println("模合group"+groupId+"に+"+"customerNo"+customerNo+"を追加しました");
+	         // 遷移先を指定
+                next = "/system/home.jsp";
 	        } catch (Exception e) {
-	            // エラー処理
+	        	// 遷移先を指定しエラーメッセージを詰める
+	            next = "/system/error.jsp";
+	            req.setAttribute("errmsg", e.getMessage());
+	            // ログにトレースを出力
 	            e.printStackTrace();
 	        } finally {
-	            try {
-					dao.close();
-				} catch (SQLException e) {
-					// TODO 自動生成された catch ブロック
-					e.printStackTrace();
-				}
+	            if (dao != null) {
+	                try {
+	                    dao.close();
+	                    // 例外に対しては何も処理を行わない
+	                } catch (SQLException e) {
+	                }
+	            }
 	        }
 	        // 画面遷移
 	        req.getRequestDispatcher(next).forward(req, res);
