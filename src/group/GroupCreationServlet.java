@@ -32,21 +32,21 @@ public class GroupCreationServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	  protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		  request.setCharacterEncoding("UTF-8");
+		  req.setCharacterEncoding("UTF-8");
 		  String next = null;
 	        // エラーメッセージ
 	        String errmsg = null;
 		   // フォームからの入力を取得
-	        String groupName = request.getParameter("group_name");
-	        String description = request.getParameter("description");
+	        String groupName = req.getParameter("group_name");
+	        String description = req.getParameter("description");
 	        System.out.println("groupName"+groupName);
 	        System.out.println("description"+description);
 
 
 	        // セッションからユーザー情報を取得
-	        HttpSession session = request.getSession();
+	        HttpSession session = req.getSession();
 	        Customer cust = (Customer) session.getAttribute("cust");
 
 	        // DAOを使用してグループをデータベースに追加
@@ -62,11 +62,11 @@ public class GroupCreationServlet extends HttpServlet {
                System.out.println("cust.getNo()"+cust.getNo());
 
                // 遷移先を指定
-               next = "/system/home.jsp";
+               next = "/group/add_customer.html";
 	        } catch (Exception e) {
 	        	// 遷移先を指定しエラーメッセージを詰める
                 next = "/system/error.jsp";
-                request.setAttribute("errmsg", e.getMessage());
+                req.setAttribute("errmsg", e.getMessage());
                 // ログにトレースを出力
                 e.printStackTrace();
 	        } finally {
@@ -77,6 +77,8 @@ public class GroupCreationServlet extends HttpServlet {
 					e.printStackTrace();
 				} // データベース接続解除
 	        }
+	        // 画面遷移
+	        req.getRequestDispatcher(next).forward(req, res);
 	    }
 
 
