@@ -33,28 +33,47 @@ public class GroupCreationServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	        // フォームからの入力を取得
+
+		  request.setCharacterEncoding("UTF-8");
+		  String next = null;
+	        // エラーメッセージ
+	        String errmsg = null;
+		   // フォームからの入力を取得
 	        String groupName = request.getParameter("group_name");
 	        String description = request.getParameter("description");
+	        System.out.println("groupName"+groupName);
+	        System.out.println("description"+description);
+
 
 	        // セッションからユーザー情報を取得
 	        HttpSession session = request.getSession();
-	        Customer customer = (Customer) session.getAttribute("cust");
+	        Customer cust = (Customer) session.getAttribute("cust");
 
 	        // DAOを使用してグループをデータベースに追加
 	        GroupDao groupDao = new GroupDao(); // GroupDaoのインスタンス化が必要です
 	        try {
 	            groupDao.connect(); // データベース接続
-	            int groupId = groupDao.createGroup(groupName, description, customer.getNo());
+	            int groupId = groupDao.createGroup(groupName, description, cust.getNo());
 	            // グループ作成成功の処理...
 	           System.out.println("groupId取得まできた"+groupId);
+
+	           // セッションに情報追加
+               session.setAttribute("cust", cust);
+               System.out.println("cust.getNo()"+cust.getNo());
+
+               // 遷移先を指定
+               next = "/system/home.jsp";
 	        } catch (Exception e) {
-	            // エラー処理...
+	        	// 遷移先を指定しエラーメッセージを詰める
+                next = "/system/error.jsp";
+                request.setAttribute("errmsg", e.getMessage());
+                // ログにトレースを出力
+                e.printStackTrace();
 	        } finally {
 	            try {
 					groupDao.close();
 				} catch (SQLException e) {
-					// TODO 自動生成された catch ブロック
+					 // 例外に対しては何も処理を行わない
 					e.printStackTrace();
 				} // データベース接続解除
 	        }
