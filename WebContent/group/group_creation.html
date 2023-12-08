@@ -1,0 +1,52 @@
+<!--
+**
+* Copyright nus Academy Co., Ltd. 2008, 2020. All rights reserved.
+*
+* This software is the proprietary information of nus Academy Co., Ltd.
+* Use is subject to license terms.
+**
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ログイン画面【MoaiApp】</title>
+<link href="../css/common.css" rel="stylesheet">
+</head>
+<body>
+<!-- ヘッダ -->
+  <header>
+    <div class="contents-wrap-title">
+      <div class="site-title">
+        <h1>MoaiApp</h1>
+        <span class="site-subtitle"></span>
+      </div>
+      模合管理システムです
+
+    </div>
+    <hr class="hr-header">
+  </header>
+<!-- メインコンテンツ" -->
+  <main>
+<!-- group_creation.html -->
+<form action="/MoaiApp/group/GroupCreationServlet" method="post">
+    <label for="group_name">グループ名:</label>
+    <input type="text" id="group_name" name="group_name" required><br>
+
+    <label for="description">グループ説明:</label>
+    <textarea id="description" name="description"></textarea><br>
+
+    <input type="submit" value="グループ作成">
+</form>
+  </main>
+<!-- フッタ -->
+  <footer>
+    <hr>
+    <p>
+      お問い合わせ：仲宗根<br>
+      <a href="mailto: ">Mail:marino.nakasone@gmail.com</a>
+    </p>
+    <p>marino.nakasone 2023, 1205.</p>
+  </footer>
+</body>
+</html>

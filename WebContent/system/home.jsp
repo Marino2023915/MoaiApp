@@ -25,11 +25,11 @@
   <header>
     <div class="contents-wrap-title">
       <div class="site-title">
-        <h1>さくらマーケット</h1>
+        <h1>MoaiApp</h1>
         <span class="site-subtitle">MoaiApp</span>
       </div>
       <h2>ホーム</h2>
-      <div class="logout"><a href="/SAKURA_ans/system/LogoutServlet">ログアウト</a></div>
+      <div class="logout"><a href="/MoaiApp/system/LogoutServlet">ログアウト</a></div>
     </div>
     <table class="table-menu">
       <tr>
@@ -37,7 +37,7 @@
           ホーム
         </th>
         <th>
-          <a href="/SAKURA_ans/goods/GoodsSearchServlet">商品一覧</a>
+          <a href="/MoaiApp/group/group_creation.html">新規グループ作成</a>
         </th>
         <th>
           <a href="/SAKURA_ans/goods/goods_search.html">商品検索</a>

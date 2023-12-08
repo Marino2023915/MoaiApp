@@ -55,14 +55,14 @@ public class PaymentServlet extends HttpServlet {
 
 
         // パラメタの取得
-        String customerName = req.getParameter("customer_name"); // 顧客名を取得
+        String group_name = req.getParameter("group_name"); // 顧客名を取得
         int amount = Integer.parseInt(req.getParameter("amount")); // 金額を整数として取得
         String dateString = req.getParameter("date");
         LocalDate startDate = LocalDate.parse(dateString); // 文字列からLocalDateに変換
         String note = req.getParameter("note"); // 備考を取得
 
         //出力して確認
-        System.out.println(customerName);
+        System.out.println(group_name);
         System.out.println(amount);
         System.out.println(startDate);
         System.out.println(note);
@@ -80,6 +80,17 @@ public class PaymentServlet extends HttpServlet {
                 names.add(name);
             }
         }
+     // 姓・名は必須
+        if(names== null) {
+        	 errmsg = "姓・名は必須です。";
+
+        }
+        // 入力チェックにてエラーがあった場合
+      if (errmsg != null) {
+      // 遷移先を指定しエラーメッセージを詰める
+      next = "/system/error.jsp";
+      req.setAttribute("errmsg", errmsg);
+ } else {
 
 
 
@@ -87,8 +98,6 @@ public class PaymentServlet extends HttpServlet {
 
 
 
-//
-//
 //        // 入力チェック
 //        if (nameLast == null || nameLast.trim().length() == 0
 //                || nameFirst == null || nameFirst.trim().length() == 0) {
@@ -139,15 +148,15 @@ public class PaymentServlet extends HttpServlet {
 //            req.setAttribute("errmsg", errmsg);
 //        } else {
 //            try {
-//                // Customerを生成しパラメタを設定
-//                Customer cust = new Customer();
-//                cust.setNameLast(nameLast);
-//                cust.setNameFirst(nameFirst);
-//                cust.setPassword(password1);
-//                cust.setPostalNo(postalNo1 + postalNo2);
-//                cust.setAddress(address);
-//                cust.setPhone(phone);
-//                cust.setEmail(email);
+//                // Customerを生成しパラメタを型に設定
+//            	Payment payment = new Payment();
+//            	payment.setGroup_Name(group_name);
+//            	payment.setAmount_of_Money(amount);
+//            	payment.setDate_of_Payment(startDate);
+//            	payment.setRemarks(note);
+//            	payment.setParticipantNames(names);
+//
+//
 //                // CustomerDao生成
 //                dao = new CustomerDao();
 //                // データベースに接続
@@ -179,9 +188,9 @@ public class PaymentServlet extends HttpServlet {
 //                    }
 //                }
 //            }
-//        }
-//        // 画面遷移
-//        req.getRequestDispatcher(next).forward(req, res);
+        }
+        // 画面遷移
+        req.getRequestDispatcher(next).forward(req, res);
     }
 
     /**

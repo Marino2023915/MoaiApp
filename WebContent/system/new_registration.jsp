@@ -44,7 +44,7 @@ function generateNameFields() {
     <form method="post" action="/MoaiApp/payment/PaymentServlet">
       <div>
         <label for="customer_name">模合グループ名:</label>
-        <input type="text" id="customer_name" name="customer_name">
+        <input type="text" id="customer_name" name="group_name">
       </div>
 
       <div>
