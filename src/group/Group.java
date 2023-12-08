@@ -7,6 +7,7 @@
 package group;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 顧客情報を保持します。
@@ -31,6 +32,9 @@ public class Group {
 
     /** 顧客郵便番号 */
     private Date creation_Date;
+
+ // メンバー名のリストを保持するためのフィールド
+    private List<String> memberNames;
 
 	public Integer getGroup_No() {
 		return group_No;
@@ -71,6 +75,18 @@ public class Group {
 	public void setCreation_Date(Date creation_Date) {
 		this.creation_Date = creation_Date;
 	}
+
+
+
+	 // メンバー名のリストを設定するメソッド
+    public void setMemberNames(List<String> memberNames) {
+        this.memberNames = memberNames;
+    }
+
+    // メンバー名のリストを取得するメソッド
+    public List<String> getMemberNames() {
+        return memberNames;
+    }
 
 
 

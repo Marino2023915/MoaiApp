@@ -70,15 +70,15 @@ List<Group> groups = (List<Group>) request.getAttribute("groups");
 for(Group group : groups) {
 %>
 <tr>
-    <td><%= group.getGroupName() %></td>
+    <td><%= group.getGroup_Name() %></td>
     <td><%= group.getDescription() %></td>
-    <td><%= group.getOwnerId() %></td>
+    <td><%= group.getOwner_Id() %></td>
     <td>
         <% for(String memberName : group.getMemberNames()) { %>
             <%= memberName %><br>
         <% } %>
     </td>
-    <td><%= group.getCreationDate() %></td>
+    <td><%= group.getCreation_Date()%></td>
 </tr>
 <%
 }

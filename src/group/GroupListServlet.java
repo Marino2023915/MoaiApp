@@ -105,12 +105,16 @@ public class GroupListServlet extends HttpServlet {
 		            dao.connect();
 		            //自分が所属してるグループ番号を取得
 		            List<Integer> groupIds = dao.getGroupIdsByUserId(cust.getNo());
+
 		            List<Group> groups = new ArrayList<>();
-		            //自分が所属しているグループの情報を取得
+		            //自分が所属しているグループをリスト
 		            for (Integer groupId : groupIds) {
-		                Group group = dao.getGroupDetailsById(groupId); // 仮定のメソッド
+		                Group group = dao.getGroupDetailsById(groupId);
+		                List<String> memberNames = dao.getMemberNamesByGroupId(groupId); // 仮定のメソッド
+		                group.setMemberNames(memberNames); // Groupクラスにメンバー名のリストを設定するメソッドを追加
 		                groups.add(group);
 		            }
+
 		            req.setAttribute("groups", groups);
 		        } catch (SQLException | ClassNotFoundException e) {
 		            next = "/system/error.jsp";
