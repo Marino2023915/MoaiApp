@@ -33,11 +33,17 @@ public class Group {
     /** 顧客郵便番号 */
     private Date creation_Date;
 
+<<<<<<< HEAD
 
     // メンバー名のリストを保持するためのフィールド
     private List<String> memberNames;
 
 
+=======
+ // メンバー名のリストを保持するためのフィールド
+    private List<String> memberNames;
+
+>>>>>>> master
 	public Integer getGroup_No() {
 		return group_No;
 	}
@@ -88,6 +94,18 @@ public class Group {
     public List<String> getMemberNames() {
         return memberNames;
     }
+
+
+	 // メンバー名のリストを設定するメソッド
+    public void setMemberNames(List<String> memberNames) {
+        this.memberNames = memberNames;
+    }
+
+    // メンバー名のリストを取得するメソッド
+    public List<String> getMemberNames() {
+        return memberNames;
+    }
+
 
 
 }

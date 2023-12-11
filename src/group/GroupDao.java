@@ -203,7 +203,13 @@ public class GroupDao {
         return groupIds;
     }
 
+<<<<<<< HEAD
 //指定されたグループIDに基づいてグループの詳細情報をデータベースから取得し、Group オブジェクトに格納するメソッド
+=======
+    /**
+     *
+     */
+>>>>>>> master
     public Group getGroupDetailsById(int groupId) throws SQLException {
         Group group = null;
         PreparedStatement stmt = null;
@@ -227,6 +233,34 @@ public class GroupDao {
             if (stmt != null) stmt.close();
         }
         return group;
+    }
+
+
+    /**
+     *GroupParticipants テーブルからユーザーIDを取得し、それに基づいてユーザーの名前を取得しています。
+     */
+    public List<String> getMemberNamesByGroupId(int groupId) throws SQLException {
+        List<String> memberNames = new ArrayList<>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            // ユーザー情報を含むテーブルとGroupParticipantsテーブルを結合するSQLクエリ
+            String sql = "SELECT u.name FROM Users u INNER JOIN GroupParticipants gp ON u.user_id = gp.user_id WHERE gp.group_id = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, groupId);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                memberNames.add(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            // エラーハンドリング
+            throw e;
+        } finally {
+            // リソースの解放
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+        }
+        return memberNames;
     }
 
 
