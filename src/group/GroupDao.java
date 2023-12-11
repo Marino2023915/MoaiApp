@@ -203,7 +203,7 @@ public class GroupDao {
         return groupIds;
     }
 
-
+//指定されたグループIDに基づいてグループの詳細情報をデータベースから取得し、Group オブジェクトに格納するメソッド
     public Group getGroupDetailsById(int groupId) throws SQLException {
         Group group = null;
         PreparedStatement stmt = null;
@@ -229,6 +229,41 @@ public class GroupDao {
         return group;
     }
 
+
+
+//特定のグループIDに所属するメンバーの名前のリストをデータベースから取得するためのメソッド
+    public List<String> getMemberNamesByGroupId(int groupId) throws SQLException {
+        List<String> memberNames = new ArrayList<>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            /*クエリの構成
+             * SELECT u.name: Users テーブルからユーザーの名前 (name) を選択します。
+             * FROM Users u: Users テーブルを u というエイリアス（別名）で参照します。
+             * INNER JOIN GroupParticipants gp: GroupParticipants テーブルを gp というエイリアスで結合します。
+             * INNER JOIN は両方のテーブルにマッチするレコードのみを結果に含めます。
+             * ON u.user_id = gp.user_id: Users テーブルの user_id と
+             * GroupParticipants テーブルの user_id が一致するレコードを結合の条件として使用します。
+             * WHERE gp.group_id = ?: GroupParticipants テーブルの
+             *  group_id が指定されたグループIDと一致するレコードのみをフィルタリングします。
+             * */
+            String sql = "SELECT u.name FROM Users u INNER JOIN GroupParticipants gp ON u.user_id = gp.user_id WHERE gp.group_id = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, groupId);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                memberNames.add(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            // エラーハンドリング
+            throw e;
+        } finally {
+            // リソースの解放
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+        }
+        return memberNames;
+    }
 
 
 }

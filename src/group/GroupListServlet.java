@@ -86,9 +86,6 @@ public class GroupListServlet extends HttpServlet {
 
 
 
-	  /**
-		 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-		 */
 	  protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		    req.setCharacterEncoding("UTF-8");
 		    String next = "/group/grouplist.jsp"; // デフォルトの遷移先
@@ -103,12 +100,14 @@ public class GroupListServlet extends HttpServlet {
 		        GroupDao dao = new GroupDao();
 		        try {
 		            dao.connect();
-		            //自分が所属してるグループ番号を取得
+		            // 自分が所属しているグループの情報を取得してリストに格納
 		            List<Integer> groupIds = dao.getGroupIdsByUserId(cust.getNo());
 		            List<Group> groups = new ArrayList<>();
-		            //自分が所属しているグループの情報を取得
+
 		            for (Integer groupId : groupIds) {
-		                Group group = dao.getGroupDetailsById(groupId); // 仮定のメソッド
+		                Group group = dao.getGroupDetailsById(groupId); // GroupIDに基づいてグループ情報を取得
+		                List<String> memberNames = dao.getMemberNamesByGroupId(groupId); // グループのメンバー名を取得
+		                group.setMemberNames(memberNames); // グループオブジェクトにメンバー名をセット
 		                groups.add(group);
 		            }
 		            req.setAttribute("groups", groups);
@@ -126,6 +125,7 @@ public class GroupListServlet extends HttpServlet {
 		    }
 		    req.getRequestDispatcher(next).forward(req, res);
 		}
+
 
 
 }
