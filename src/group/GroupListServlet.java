@@ -100,8 +100,11 @@ public class GroupListServlet extends HttpServlet {
 		        GroupDao dao = new GroupDao();
 		        try {
 		            dao.connect();
+		            System.out.println("cust.getNo()="+cust.getNo());
 		            // 自分が所属しているグループの情報を取得してリストに格納
 		            List<Integer> groupIds = dao.getGroupIdsByUserId(cust.getNo());
+
+		            System.out.println("groupIds.size()="+groupIds.size());
 
 		            List<Group> groups = new ArrayList<>();
 

@@ -182,34 +182,35 @@ public class GroupDao {
         }
     }
     /**
-     *ユーザーIDを引数として受け取り、そのユーザーが所属するグループの一覧を返すメソッドを作成します。
+     *カスタマーIDを引数として受け取り、そのユーザーが所属するグループの一覧を返すメソッドを作成します。
      */
-    public List<Integer> getGroupIdsByUserId(String userId) throws SQLException {
+    public List<Integer> getGroupIdsByUserId(String customer_no) throws SQLException {
         List<Integer> groupIds = new ArrayList<>();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT group_id FROM GroupParticipants WHERE user_id = ?";
+            // 特定のカスタマーが参加しているグループのIDを取得するSQLクエリ
+            String sql = "SELECT group_id FROM GroupParticipants WHERE group_id = ?";
             stmt = con.prepareStatement(sql);
-            stmt.setString(1, userId);
+            stmt.setInt(1, Integer.parseInt(customer_no)); // カスタマー番号を整数に変換してセット
             rs = stmt.executeQuery();
+            // 結果セットからグループIDを取得しリストに追加
             while (rs.next()) {
                 groupIds.add(rs.getInt("group_id"));
+                int count=0;
+                count++;
+                System.out.println("count="+count);
             }
         } finally {
+            // リソースの解放
             if (rs != null) rs.close();
             if (stmt != null) stmt.close();
         }
-        return groupIds;
+        return groupIds; // グループIDのリストを返す
     }
 
-<<<<<<< HEAD
-//指定されたグループIDに基づいてグループの詳細情報をデータベースから取得し、Group オブジェクトに格納するメソッド
-=======
-    /**
-     *
-     */
->>>>>>> master
+
+
     public Group getGroupDetailsById(int groupId) throws SQLException {
         Group group = null;
         PreparedStatement stmt = null;
@@ -236,32 +237,6 @@ public class GroupDao {
     }
 
 
-    /**
-     *GroupParticipants テーブルからユーザーIDを取得し、それに基づいてユーザーの名前を取得しています。
-     */
-    public List<String> getMemberNamesByGroupId(int groupId) throws SQLException {
-        List<String> memberNames = new ArrayList<>();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        try {
-            // ユーザー情報を含むテーブルとGroupParticipantsテーブルを結合するSQLクエリ
-            String sql = "SELECT u.name FROM Users u INNER JOIN GroupParticipants gp ON u.user_id = gp.user_id WHERE gp.group_id = ?";
-            stmt = con.prepareStatement(sql);
-            stmt.setInt(1, groupId);
-            rs = stmt.executeQuery();
-            while (rs.next()) {
-                memberNames.add(rs.getString("name"));
-            }
-        } catch (SQLException e) {
-            // エラーハンドリング
-            throw e;
-        } finally {
-            // リソースの解放
-            if (rs != null) rs.close();
-            if (stmt != null) stmt.close();
-        }
-        return memberNames;
-    }
 
 
 
@@ -272,16 +247,13 @@ public class GroupDao {
         ResultSet rs = null;
         try {
             /*クエリの構成
-             * SELECT u.name: Users テーブルからユーザーの名前 (name) を選択します。
-             * FROM Users u: Users テーブルを u というエイリアス（別名）で参照します。
-             * INNER JOIN GroupParticipants gp: GroupParticipants テーブルを gp というエイリアスで結合します。
-             * INNER JOIN は両方のテーブルにマッチするレコードのみを結果に含めます。
-             * ON u.user_id = gp.user_id: Users テーブルの user_id と
-             * GroupParticipants テーブルの user_id が一致するレコードを結合の条件として使用します。
-             * WHERE gp.group_id = ?: GroupParticipants テーブルの
-             *  group_id が指定されたグループIDと一致するレコードのみをフィルタリングします。
+
              * */
-            String sql = "SELECT u.name FROM Users u INNER JOIN GroupParticipants gp ON u.user_id = gp.user_id WHERE gp.group_id = ?";
+            String sql = "SELECT c.customer_name_last || ' ' || c.customer_name_first AS full_name\r\n" +
+            		"FROM customers c\r\n" +
+            		"INNER JOIN GroupParticipants gp ON c.customer_no = gp.customer_id\r\n" +
+            		"WHERE gp.group_id = ?;\r\n" +
+            		"";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, groupId);
             rs = stmt.executeQuery();

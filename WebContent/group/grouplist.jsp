@@ -16,7 +16,6 @@
 
 <%--useBean--%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,39 +53,41 @@
   </header>
 <!-- メインコンテンツ -->
 
-  <main>
-    <div class="message">
-      商品の情報を参照する場合は，各商品左のボタンを押してください。
-    </div>
-    <table class="table-product-info">
-      <tr class="tr-product-info-header">
-        <th>模合グループ名</th>
-        <th>グループの説明</th>
-        <th>グループ作成者</th>
-        <th>模合グループメンバー</th>
-        <th>グループ作成日</th>
-      </tr>
-<%
-List<Group> groups = (List<Group>) request.getAttribute("groups");
-for(Group group : groups) {
-%>
-<tr>
-    <td><%= group.getGroup_Name() %></td>
-    <td><%= group.getDescription() %></td>
-    <td><%= group.getOwner_Id() %></td>
-    <td>
-        <% for(String memberName : group.getMemberNames()) { %>
-            <%= memberName %><br>
-        <% } %>
-    </td>
-    <td><%= group.getCreation_Date()%></td>
-</tr>
-<%
-}
-%>
-    </table>
-  </main>
->>>>>>> master
+<main>
+        <div class="message">
+            あなたが現在加入中の模合グループです
+        </div>
+        <table class="table-product-info">
+            <!-- ヘッダ行 -->
+            <tr class="tr-product-info-header">
+                <th>模合グループ名</th>
+                <th>グループの説明</th>
+                <th>グループ作成者</th>
+                <th>模合グループメンバー</th>
+                <th>グループ作成日</th>
+            </tr>
+            <!-- グループ情報の行 -->
+            <%
+                List<Group> groups = (List<Group>) request.getAttribute("groups");
+                for(Group group : groups) {
+            %>
+            <tr>
+                <td><%= group.getGroup_Name() %></td>
+                <td><%= group.getDescription() %></td>
+                <td><%= group.getOwner_Id() %></td>
+                <td>
+                    <% for(String memberName : group.getMemberNames()) { %>
+                        <%= memberName %><br>
+                    <% } %>
+                </td>
+                <td><%= group.getCreation_Date()%></td>
+            </tr>
+            <%
+                }
+            %>
+        </table>
+    </main>
+
 <!-- フッタ -->
   <footer>
     <hr>
