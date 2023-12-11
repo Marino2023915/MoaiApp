@@ -104,19 +104,13 @@ public class GroupListServlet extends HttpServlet {
 		            List<Integer> groupIds = dao.getGroupIdsByUserId(cust.getNo());
 
 		            List<Group> groups = new ArrayList<>();
-<<<<<<< HEAD
+
 
 		            for (Integer groupId : groupIds) {
 		                Group group = dao.getGroupDetailsById(groupId); // GroupIDに基づいてグループ情報を取得
 		                List<String> memberNames = dao.getMemberNamesByGroupId(groupId); // グループのメンバー名を取得
 		                group.setMemberNames(memberNames); // グループオブジェクトにメンバー名をセット
-=======
-		            //自分が所属しているグループをリスト
-		            for (Integer groupId : groupIds) {
-		                Group group = dao.getGroupDetailsById(groupId);
-		                List<String> memberNames = dao.getMemberNamesByGroupId(groupId); // 仮定のメソッド
-		                group.setMemberNames(memberNames); // Groupクラスにメンバー名のリストを設定するメソッドを追加
->>>>>>> master
+
 		                groups.add(group);
 		            }
 
