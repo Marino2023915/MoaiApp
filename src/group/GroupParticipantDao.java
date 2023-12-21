@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+//ソースツリーtest/202312/21
 // GroupDao.java
 public class GroupParticipantDao {
 	/**
